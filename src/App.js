@@ -3,12 +3,12 @@ import TodoTemplate from "./components/TodoTemplate";
 import TodoInsert from "./components/TodoInsert";
 import TodoList from "./components/TodoList";
 
-function createBulkTodos(){
+function createBulkTodos() {
   const array = [];
-  for(let i =1; i<=2500; i++){
+  for (let i = 1; i <= 2500; i++) {
     array.push({
-      id : i,
-      text:`할 일 ${i}`,
+      id: i,
+      text: `할 일 ${i}`,
       checked: false,
     });
   }
@@ -19,7 +19,7 @@ const App = () => {
   const [todos, SetTodos] = useState(createBulkTodos);
 
   const nextId = useRef(4);
-  
+
   const onInsert = useCallback(
     text => {
       const todo = {
@@ -43,18 +43,18 @@ const App = () => {
   const onToggle = useCallback(
     id => {
       SetTodos(
-        todos=>todos.map(todo=>
-          todo.id === id? {...todo, checked: !todo.checked}:todo,
-          ),
-  );
+        todos => todos.map(todo =>
+          todo.id === id ? { ...todo, checked: !todo.checked } : todo,
+        ),
+      );
     },
     []
   );
 
   return (
     <TodoTemplate>
-      <TodoInsert onInsert={onInsert}/>
-      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+      <TodoInsert onInsert={onInsert} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle} />
     </TodoTemplate>
   );
 };
